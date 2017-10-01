@@ -85,18 +85,23 @@ void loop(){
     lcd.print("Time:");
     lcd.print(startTime);
     
+    
     unsigned int distCM=ultrasonic.distanceRead();  
     lcd.setCursor(0,2);
-    lcd.print("... Dist:");
+    lcd.print(">>R3<<  Dist:");
     lcd.print((unsigned int)distCM);
     lcd.print(" cm ");
-    if(distCM <=26 ) {
-      lcd.backlight();
-      delay(35000); // Let it look for a while
-    }else{
-      lcd.noBacklight();
-      delay(1300);
+    if(distCM !=0) {
+      if(distCM <=45 ) {
+        lcd.backlight();
+        delay(5000); // Stabilize
+      }else{
+        lcd.noBacklight();
+      }
+    }else {
+      // BAD MEasure
     }
+    delay(990);
 
   }
 
